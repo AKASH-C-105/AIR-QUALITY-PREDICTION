@@ -1,2 +1,2 @@
 Flask==2.2.2
-XGBoost-3.0.0
+xgboost=1.6.1
