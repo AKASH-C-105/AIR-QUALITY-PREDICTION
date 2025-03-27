@@ -1,19 +1,19 @@
-# Use an appropriate base image
-FROM python:3.12
+# Use Python 3.10 (or change to 3.11 if needed)
+FROM python:3.10
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the requirements file
+# Copy requirements file
 COPY requirements.txt .
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Upgrade pip and install dependencies
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Copy application files
+# Copy the application code
 COPY . .
 
-# Expose the port the app runs on
+# Expose port 5000 for Flask
 EXPOSE 5000
 
 # Run the application
