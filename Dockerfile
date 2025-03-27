@@ -1,23 +1,20 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+# Use an appropriate base image
+FROM python:3.12
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the requirements file
+COPY requirements.txt .
 
-# Install any needed packages specified in requirements.txt
-# This also installs the latest version of XGBoost
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir xgboost --upgrade
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 5000 for Flask app
+# Copy application files
+COPY . .
+
+# Expose the port the app runs on
 EXPOSE 5000
 
-# Define environment variable to make Flask run properly in Docker
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-
 # Run the application
-CMD ["flask", "run"]
+CMD ["python", "app.py"]
