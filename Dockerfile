@@ -8,7 +8,9 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# This also installs the latest version of XGBoost
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir xgboost --upgrade
 
 # Expose port 5000 for Flask app
 EXPOSE 5000
