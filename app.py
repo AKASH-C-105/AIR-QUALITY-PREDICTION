@@ -64,4 +64,4 @@ def predict():
         return f"Error in prediction: {str(e)}"
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Enable debug mode for error tracking
+    app.run(host="0.0.0.0", port=5000, debug=True)  # Enable debug mode for error tracking
